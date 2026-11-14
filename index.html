@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم زينة | جاري تحويلك للمتجر...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #090B0E;
+            color: #FFFFFF;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .box {
+            padding: 45px 35px;
+            border-radius: 26px;
+            background: rgba(18, 22, 30, 0.95);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.85), 0 0 35px rgba(212, 175, 55, 0.18);
+            max-width: 440px;
+            width: 90%;
+        }
+        .spinner {
+            width: 64px;
+            height: 64px;
+            border: 4px solid rgba(212, 175, 55, 0.15);
+            border-top: 4px solid #D4AF37;
+            border-radius: 50%;
+            animation: spin 0.9s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
+            margin: 0 auto 24px;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        h1 {
+            font-size: 26px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #F5D77F 0%, #D4AF37 50%, #9E7D23 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 0 10px;
+        }
+        p { color: #A0A5B5; font-size: 14.5px; margin: 0 0 15px; font-weight: 600; }
+        .hint { font-size: 12px; color: #6B7280; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="spinner"></div>
+        <h1>عالم زينة | EALAM ZAYNA</h1>
+        <p>جاري تحويلك تلقائياً إلى البوابة الحية للمتجر...</p>
+        <span class="hint">صياغة الفخامة والتراث الأصيل</span>
+    </div>
+    <script>
+        async function routeToStore() {
+            try {
+                const res = await fetch('live_server.txt?t=' + Date.now());
+                const rawUrl = (await res.text()).trim();
+                if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
+                    let target = rawUrl;
+                    while (target.endsWith('/')) target = target.slice(0, -1);
+                    window.location.replace(target + '/Ss/laravel-sql/public/');
+                    return;
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        routeToStore();
+    </script>
+</body>
+</html>
